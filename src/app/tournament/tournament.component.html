@@ -1,0 +1,24 @@
+<div fxLayoutAlign="center"
+     fxFill="80"
+     class="container"
+     fxLayout="column"
+     fxLayoutGap="20px">
+  <div fxFill="20"
+       fxLayoutAlign="center">
+    <a mat-button class="gameSignUp"
+       (click)="signUp()">
+      TILMELD INHOUSE
+    </a>
+  </div>
+  <span class="spacer"></span>
+
+  <div fxLayout="row wrap"
+       fxLayoutAlign="center end"
+       fxLayoutGap="100px">
+    <app-teams></app-teams>
+    <app-queue></app-queue>
+  </div>
+  <button mat-raised-button (click)="onSave()" *ngIf="isAdmin()">Gem Ændringer</button>
+  <button mat-raised-button (click)="onEndMatch()" *ngIf="isAdmin()">Afslut Match</button>
+</div>
+

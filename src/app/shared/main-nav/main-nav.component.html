@@ -1,0 +1,87 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer
+               class="sidenav"
+               fixedInViewport="false"
+               [attr.role]="isHandset$ ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="!(isHandset$ | async)">
+    <img
+      fxLayoutAlign="center"
+      class="imgLogo"
+      src="assets/imgs/logo.png"
+      alt="UlleChampLogo"
+      routerLink="/">
+    <mat-nav-list>
+      <hr>
+      <a *ngIf="!isLoggedIn"
+         href="https://id.twitch.tv/oauth2/authorize?client_id=qgnb4ep6s4mb0dxt167a0q3xfvsxwc&redirect_uri=https://ullechamp.azurewebsites.net/token&response_type=code&scope="
+         mat-list-item
+         class="loginBtn">
+        <img
+          fxLayoutAlign="center center"
+          class="twitchLogo"
+          src="assets/imgs/twitchLogo.png"
+          alt="TwitchLogo">
+        <span class="spacer"></span>
+        Login med Twitch</a>
+      <span
+        class="loggedIn"
+        fxLayoutAlign="center center"
+        *ngIf="isLoggedIn">Velkommen {{ twitchname }}</span>
+      <hr>
+      <a mat-list-item routerLink="/" class="navBtn">Hjem</a>
+      <a mat-list-item class="navBtn" (click)="toggleInHouse()">InHouse
+        <span class="spacer"></span>
+        <mat-icon>expand_more</mat-icon>
+      </a>
+      <span *ngIf="inhouseActive">
+        <a
+          mat-list-item
+          class="navBtn dropdown"
+          routerLink="/rules">
+          <mat-icon class="chevron_right">chevron_right</mat-icon>Regler</a>
+        <a
+          mat-list-item
+          class="navBtn dropdown"
+          routerLink="/leaderboard">
+          <mat-icon class="chevron_right">chevron_right</mat-icon>Rang Liste</a>
+      </span>
+
+      <a mat-list-item routerLink="/calender" class="navBtn">Kalender</a>
+      <a mat-list-item class="navBtn" routerLink="/tournament">Tilmelding</a>
+
+      <a mat-list-item class="navBtn" (click)="toggleAdmin()" *ngIf="role === 'Admin'">Admin
+        <span class="spacer"></span>
+        <mat-icon>expand_more</mat-icon>
+      </a>
+      <span *ngIf="adminActive">
+        <a
+          mat-list-item
+          class="navBtn dropdown"
+          routerLink="/admin-tournaments">
+          <mat-icon class="chevron_right">chevron_right</mat-icon>Enter KDA</a>
+      </span>
+      <a
+        mat-list-item
+        (click)="onLogout()"
+        *ngIf="isLoggedIn"
+        class="navBtn">Logout</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon" class="hamburger">menu</mat-icon>
+      </button>
+      <span class="spacer"></span>
+      <span class="title">InHouse 5v5</span>
+      <span class="spacer"></span>
+    </mat-toolbar>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

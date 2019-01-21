@@ -1,0 +1,37 @@
+.btnBlueTeam {
+  width: 100px;
+  height: 35px;
+  background-color: blue;
+  flex: 1 1 auto;
+  top: 3px;
+  align-items: center;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.btnRedTeam {
+  width: 100px;
+  height: 35px;
+  background-color: red;
+  flex: 1 1 auto;
+  top: 3px;
+  align-items: center;
+  color: #FFFFFF;
+  font-size: 14px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.spacer {
+  flex: 1 auto;
+}
+
+.imgUserPic {
+  width: 40px;
+  height: 40px;
+  border-radius: 1000px;
+}
+
+.queue-cards {
+  width: 35vw;
+}
